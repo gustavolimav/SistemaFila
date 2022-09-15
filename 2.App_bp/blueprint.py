@@ -1,16 +1,16 @@
 from flask import Blueprint, jsonify
 
-bp = Blueprint('blueprint', __name__, url_prefix='/api')
+bp = Blueprint('blueprint', __name__, url_prefix='/filas')
 
 filaGlobal = {'Normal': [0, 0], 'Preferencial': [0, 0]}
 
 
-@bp.route('/filas')
+@bp.route('/situacao')
 def show():
     return filaGlobal
 
 
-@bp.route('/filas/Normal')
+@bp.route('/gerar/normal')
 def postFilaNormal():
     list = filaGlobal.get('Normal')
 
@@ -19,7 +19,7 @@ def postFilaNormal():
     return '', 200
 
 
-@bp.route('/filas/Preferencial')
+@bp.route('/gerar/preferencial')
 def postFilaPreferencial():
     list = filaGlobal.get('Preferencial')
 
@@ -28,7 +28,7 @@ def postFilaPreferencial():
     return '', 200
 
 
-@bp.route('/filas/Normal/tome')
+@bp.route('/chamar/normal')
 def putFilaNormal():
     list = filaGlobal.get('Normal')
 
@@ -43,7 +43,7 @@ def putFilaNormal():
         return 'Fila vazia', 500
 
 
-@bp.route('/filas/Preferencial/tome')
+@bp.route('/chamar/preferencial')
 def putFilaPreferencial():
     list = filaGlobal.get('Preferencial')
 
